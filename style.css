@@ -1,0 +1,153 @@
+:root{
+  --bg-start: #ffd1e8;
+  --bg-end: #ffb3d1;
+  --card-bg: rgba(255,255,255,0.12);
+  --card-border: rgba(255,255,255,0.2);
+  --accent: #ff4da6;
+  --yes-scale: 1;
+  --max-yes-scale: 2;
+  --text: #222;
+  --glass-blur: 8px;
+}
+
+/* Mobile-first */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
+  background:linear-gradient(160deg,var(--bg-start),var(--bg-end));
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  padding:20px;
+  overflow:hidden;
+  color:var(--text);
+}
+
+/* floating hearts container */
+.hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
+.heart{
+  position:absolute;
+  bottom:-40px;
+  animation:floatUp linear forwards;
+  color:#ff4da6;
+  will-change:transform,opacity;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1); opacity:1}
+  70%{opacity:0.9}
+  100%{transform:translateY(-120vh) scale(1.2); opacity:0}
+}
+
+/* Card */
+.page{width:100%; max-width:420px; z-index:2}
+.card{
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:18px;
+  overflow:hidden;
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+}
+
+/* video area */
+.video-wrap{width:100%; max-height:48vh; overflow:hidden; background:transparent}
+.video-wrap video{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+}
+
+/* content */
+.card-content{
+  padding:16px;
+  text-align:center;
+}
+.intro{
+  margin:4px 0 8px;
+  font-size:1.05rem;
+  font-weight:600;
+}
+.question{
+  margin:0 0 14px;
+  font-size:1.2rem;
+  line-height:1.2;
+}
+
+/* buttons */
+.controls{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin-top:6px;
+}
+.btn{
+  border:0;
+  cursor:pointer;
+  padding:12px 18px;
+  border-radius:999px;
+  font-weight:700;
+  background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  color:var(--accent);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  transition:transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms;
+  -webkit-tap-highlight-color: transparent;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:110px;
+}
+
+/* NO button */
+.btn-no{
+  background:transparent;
+  color:#7a3a6a;
+  border:1px solid rgba(255,255,255,0.06);
+}
+.btn-no:active{transform:translateY(2px)}
+
+/* YES button pulses and respects the dynamic scale variable */
+.btn-yes{
+  background:linear-gradient(90deg,#ff8fc4,#ff4da6);
+  color:white;
+  box-shadow: 0 8px 20px rgba(255,77,166,0.18);
+  transform:scale(var(--yes-scale));
+  animation:yesPulse 1.3s ease-in-out infinite;
+  will-change:transform;
+}
+@keyframes yesPulse{
+  0%{transform:scale(calc(var(--yes-scale) * 0.985))}
+  50%{transform:scale(calc(var(--yes-scale) * 1.035))}
+  100%{transform:scale(calc(var(--yes-scale) * 0.985))}
+}
+
+/* Yay page tweaks */
+.yay-title{font-size:1.6rem; margin:8px 0}
+.yay-msg{color:#6b395b; margin:0 0 12px; font-weight:600}
+
+/* responsive */
+@media (min-width:520px){
+  .page{max-width:520px}
+  .card-content{padding:24px}
+  .question{font-size:1.4rem}
+}
+
+/* helper: hearts spawn speed variance by inline style --duration */
+.heart{
+  animation-duration: calc(4s + var(--rand, 0s));
+}
