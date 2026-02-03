@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Will you be my Valentine?</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="A playful Valentine page for Ehmie">
+</head>
+<body>
+  <div class="hearts" aria-hidden="true"></div>
+
+  <main class="page">
+    <section class="card" role="main" aria-labelledby="heading">
+      <div class="video-wrap">
+        <video id="qVideo" src="assets/video-question.mp4" autoplay playsinline muted loop></video>
+      </div>
+
+      <header class="card-content">
+        <h1 id="heading" class="intro">Ehmie’s Morem, my moonlight, short baby 😅</h1>
+        <p id="question" class="question">Will you be my Valentine, Ehmie? 💖</p>
+
+        <div class="controls">
+          <button id="yesBtn" class="btn btn-yes" aria-label="Yes, I will be your Valentine">YES 💖</button>
+          <button id="noBtn" class="btn btn-no" aria-label="No, I will not">NO 🙃</button>
+        </div>
+      </header>
+    </section>
+  </main>
+
+  <!-- Audio -->
+  <audio id="sadSound" src="assets/sound-sad.mp3" preload="auto"></audio>
+  <audio id="cheerSound" src="assets/sound-cheer.mp3" preload="auto"></audio>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
