@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YAAAY 💖🥰</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Celebration page">
+</head>
+<body>
+  <div class="hearts" aria-hidden="true"></div>
+
+  <main class="page">
+    <section class="card" role="main" aria-labelledby="yay-heading">
+      <div class="video-wrap">
+        <video id="yayVideo" src="assets/video-yay.mp4" autoplay playsinline muted loop></video>
+      </div>
+
+      <header class="card-content">
+        <h1 id="yay-heading" class="yay-title">YAAAY 💖🥰</h1>
+        <p class="yay-msg">i thought you were going to say no 😏</p>
+
+        <div class="controls">
+          <a class="btn btn-yes" href="index.html" role="button">Back</a>
+        </div>
+      </header>
+    </section>
+  </main>
+
+  <script>
+    // keep floating hearts going on celebration page too
+    (function spawnHearts() {
+      const container = document.querySelector('.hearts');
+      if (!container) return;
+      // simple, continuous spawn
+      setInterval(() => {
+        const s = document.createElement('span');
+        s.className = 'heart';
+        s.style.left = (Math.random() * 100) + '%';
+        s.style.opacity = (0.6 + Math.random() * 0.4).toFixed(2);
+        s.style.fontSize = (18 + Math.random() * 28) + 'px';
+        container.appendChild(s);
+        s.addEventListener('animationend', () => s.remove());
+      }, 350);
+    })();
+  </script>
+</body>
+</html>
